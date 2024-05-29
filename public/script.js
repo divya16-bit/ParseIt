@@ -10,7 +10,7 @@ function resetFields() {
   document.querySelector('input[type="file"]').value = null;
   fileInfo.innerText= '';
   isXml_json = null;
-  console.log(isXml_json);
+  //console.log(isXml_json);
   document.querySelector('a.conditional-link').style.display = 'none';
 }
 
@@ -26,7 +26,7 @@ dropZone.addEventListener('click', () => {
  if(isXml_json === null){
   fileInfo.innerText = 'Please select either of the above mentioned options' + '\n' +
   'first.';
-  console.log(isXml_json);
+  //console.log(isXml_json);
  }
  else{
   fileInput.click();
@@ -55,7 +55,7 @@ fileInput.addEventListener('change', () => {
     else {
         file = prevFile;
         //anchorTag.style.display = 'inline-block'; 
-        console.log('Please select a file.'); // If no file is selected
+        //console.log('Please select a file.'); // If no file is selected
     }
     
   displayFileInfo(file);
@@ -71,12 +71,11 @@ jsonToXml.addEventListener('click', () => {
   prevClick = currClick;
   currClick = event.target.id;
 
-  console.log('Previous Click:', prevClick);
-  console.log('Current Click:', currClick);
-  //counter1++;
+  //console.log('Previous Click:', prevClick);
+  //console.log('Current Click:', currClick);
   if (event.target.name === 'conversionType' && event.target.checked) {
      isXml_json = event.target.value ;
-     console.log(`Clicked on: ${event.target.value}`);
+     //console.log(`Clicked on: ${event.target.value}`);
      if(prevClick !== currClick){
      anchorTag.style.display = 'none';
      document.querySelector('input[type="file"]').value = null;
@@ -90,12 +89,11 @@ xmlToJson.addEventListener('click', () => {
   prevClick = currClick;
   currClick = event.target.id;
 
-  console.log('Previous Click:', prevClick);
-  console.log('Current Click:', currClick);
-  //counter2++;
+  //console.log('Previous Click:', prevClick);
+  //console.log('Current Click:', currClick);
   if (event.target.name === 'conversionType' && event.target.checked) {
      isXml_json = event.target.value ;
-     console.log(`Clicked on: ${event.target.value}`);
+     //console.log(`Clicked on: ${event.target.value}`);
      if(prevClick !== currClick){
      anchorTag.style.display = 'none';
      document.querySelector('input[type="file"]').value = null;
@@ -132,7 +130,8 @@ if (file) {
 
         reader.readAsText(file); // Read the file as text
     } else {
-        console.log('Please select a file.'); // If no file is selected
+      fileInfo.innerText = 'No file selected';
+        //console.log('Please select a file.'); // If no file is selected
     }
       displayFileInfo(file);
 });
@@ -147,8 +146,8 @@ function displayFileInfo(file){
    if(file){
      
      //fileInfo.innerText = `file data : ${rawData}`;
-     console.log("currentChoice: ", isXml_json);
-     console.log("ext: ",extension);
+     //console.log("currentChoice: ", isXml_json);
+     //console.log("ext: ",extension);
      if(extension != isXml_json){
       console.log( 'Invalid conversion type.' );
       fileInfo.innerText = 'Please select either of the above mentioned options' + '\n' +
@@ -168,13 +167,13 @@ const form = document.getElementById('uploadForm')
 const sendInput = async () => {
   if(rawData != null){
   const data = rawData;
-  console.log(data);
+  //console.log(data);
 
   const formData = {
    conversionType: isXml_json,
    rawData: data.toString(),
   };
-  console.log('the object ',formData)
+  //console.log('the object ',formData)
   
   const response = await fetch('http://localhost:8000/convert', {
      method: 'POST',
@@ -208,7 +207,7 @@ const sendInput = async () => {
    //console.log(json)
 }
 else{
-  console.log('Please select a file.');
+  //console.log('Please select a file.');
   fileInfo.innerText = 'Please select either of the above mentioned options' + '\n' +
   '& choose the file accordingly.';
 }
@@ -222,6 +221,6 @@ form.addEventListener('submit',(e) => {
   else{
     fileInfo.innerText= 'Please select either of the above mentioned options' + '\n' +
        '& choose the file accordingly.';
-    console.log( 'Invalid conversion type.' );
+    //console.log( 'Invalid conversion type.' );
   }
 })

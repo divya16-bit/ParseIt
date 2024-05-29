@@ -27,16 +27,16 @@ app.get('*', (req, res) => {
 // Endpoint to handle file upload and convert based on user choice (JSON to XML or XML to JSON)
 app.post('/convert', 
    (req, res) => {
-     console.log('the request json ,',req.body.rawData) 
+    // console.log('the request json ,',req.body.rawData) 
      const rawData = req.body.rawData; // Get the uploaded file
      const conversionType = req.body.conversionType; // Conversion choice from the client
-     console.log(conversionType);
+     //console.log(conversionType);
 
     if (conversionType === 'json') {
       try {
          const xmlResult = handleFileJson(rawData); //extract & convert
-         console.log("Xml at server is:" ,xmlResult);
-         console.log('type of :', typeof xmlResult);
+         //console.log("Xml at server is:" ,xmlResult);
+         //console.log('type of :', typeof xmlResult);
          res.set('Content-Type', 'application/json');
          res.send({
             data: xmlResult, 
@@ -51,7 +51,7 @@ app.post('/convert',
      else if (conversionType === 'xml') {
        try {
          const jsonResult = handleFileXml(rawData); //extract & convert
-         console.log("Json at server is:", jsonResult);
+         //console.log("Json at server is:", jsonResult);
          const jsonData = JSON.stringify(jsonResult, null, 2)
          res.set('Content-Type', 'application/json');
          res.send({
