@@ -175,7 +175,7 @@ const sendInput = async () => {
   };
   //console.log('the object ',formData)
   
-  const response = await fetch('http://localhost:8000/convert', {
+  const response = await fetch('https://parseit.onrender.com/convert', {
      method: 'POST',
      headers: {
       'Content-Type': 'application/json',
